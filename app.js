@@ -1,7 +1,8 @@
 (function () {
   const DEFAULT_GROUP_ID = "mezz";
   const DEFAULT_REFRESH_SECONDS = 30;
-  const PICKER_TICKER_ENDPOINT = window.PICKER_TICKER_ENDPOINT || "/pickerticker.cfm";
+  const GITHUB_DEMO_ENDPOINT = "https://raw.githubusercontent.com/ryatteaujr/racetrac2/main/pickerticker.cfm";
+  const PICKER_TICKER_ENDPOINT = window.PICKER_TICKER_ENDPOINT || defaultPickerTickerEndpoint();
   const groups = [
     { id: "mezz", name: "Mezz" },
     { id: "repack", name: "Repack" },
@@ -10,6 +11,13 @@
 
   let activeGroupId = window.PICKER_TICKER_GROUP_ID || DEFAULT_GROUP_ID;
   let refreshTimer = null;
+
+  function defaultPickerTickerEndpoint() {
+    if (window.location?.hostname === "htmlpreview.github.io") {
+      return GITHUB_DEMO_ENDPOINT;
+    }
+    return "/pickerticker.cfm";
+  }
 
   function warehouseDateToday() {
     return new Date().toISOString().slice(0, 10);
