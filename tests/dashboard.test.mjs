@@ -204,6 +204,29 @@ test("loads picker ticker JSON for the selected group and warehouse date", async
   assert.equal(calls[0].options.headers.Accept, "application/json");
 });
 
+test("loads demo data from raw GitHub when rendered through htmlpreview", async () => {
+  const calls = [];
+  const dashboard = await loadDashboard({
+    window: {
+      location: {
+        hostname: "htmlpreview.github.io",
+      },
+    },
+    fetch: async (url) => {
+      calls.push(String(url));
+      return {
+        ok: true,
+        json: async () => pickerBoardPayload(),
+      };
+    },
+  });
+
+  await dashboard.loadPickerBoard("mezz", "2026-04-30");
+
+  assert.match(calls[0], /^https:\/\/raw\.githubusercontent\.com\/ryatteaujr\/racetrac2\/main\/pickerticker\.cfm\?/);
+  assert.match(calls[0], /groupId=mezz/);
+});
+
 test("throws API error messages so the wallboard can retry on the next refresh", async () => {
   const dashboard = await loadDashboard({
     fetch: async () => ({
