@@ -227,6 +227,30 @@ test("loads demo data from raw GitHub when rendered through htmlpreview", async 
   assert.match(calls[0], /groupId=mezz/);
 });
 
+test("loads project-relative demo data when rendered through GitHub Pages", async () => {
+  const calls = [];
+  const dashboard = await loadDashboard({
+    window: {
+      location: {
+        hostname: "ryatteaujr.github.io",
+        pathname: "/racetrac2/index.html",
+      },
+    },
+    fetch: async (url) => {
+      calls.push(String(url));
+      return {
+        ok: true,
+        json: async () => pickerBoardPayload(),
+      };
+    },
+  });
+
+  await dashboard.loadPickerBoard("mezz", "2026-04-30");
+
+  assert.match(calls[0], /^pickerticker\.cfm\?/);
+  assert.match(calls[0], /groupId=mezz/);
+});
+
 test("throws API error messages so the wallboard can retry on the next refresh", async () => {
   const dashboard = await loadDashboard({
     fetch: async () => ({
