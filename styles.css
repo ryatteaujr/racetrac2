@@ -1,0 +1,528 @@
+:root {
+  --bg: #03070a;
+  --panel: #0c151c;
+  --panel-soft: #111d25;
+  --line: #334856;
+  --text: #ffffff;
+  --muted: #bfd0dd;
+  --yellow: #ffd400;
+  --blue: #1c95f5;
+  --green: #43dc2f;
+  --green-dark: #218b1f;
+  --cyan: #18d8da;
+  --orange: #ff7826;
+  --track: #182630;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  overflow: hidden;
+  background: radial-gradient(circle at top, #151811 0, var(--bg) 40%);
+  color: var(--text);
+  cursor: none;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 800;
+}
+
+.wallboard {
+  display: grid;
+  grid-template-rows: 104px 102px minmax(0, 1fr);
+  gap: 10px;
+  width: 100vw;
+  max-width: 1920px;
+  height: 100vh;
+  max-height: 1080px;
+  min-width: 1180px;
+  margin: 0 auto;
+  padding: 0 24px 12px;
+}
+
+.board-header {
+  display: grid;
+  grid-template-columns: 300px 1fr 300px;
+  align-items: center;
+}
+
+.brand-logo {
+  width: 220px;
+  height: 78px;
+  object-fit: contain;
+}
+
+.title-block {
+  justify-self: center;
+  text-align: center;
+}
+
+h1,
+h2,
+p {
+  margin: 0;
+  letter-spacing: 0;
+}
+
+.title-art {
+  display: block;
+  width: min(760px, 100%);
+  height: 50px;
+  object-fit: contain;
+}
+
+.title-block p {
+  margin-top: -4px;
+  color: var(--yellow);
+  font-size: 18px;
+  text-transform: uppercase;
+}
+
+.clock-block {
+  display: grid;
+  justify-items: center;
+  line-height: 1.12;
+}
+
+.clock-block strong {
+  font-size: 42px;
+}
+
+.clock-block span {
+  font-size: 20px;
+}
+
+.kpi-strip,
+.race-card,
+.mini-card {
+  border: 2px solid var(--line);
+  border-radius: 8px;
+  background: linear-gradient(180deg, rgba(14, 25, 32, 0.98), rgba(5, 11, 15, 0.98));
+}
+
+.kpi-strip {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  overflow: hidden;
+}
+
+.kpi {
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  gap: 5px;
+  border-right: 2px solid var(--line);
+  padding: 10px 18px;
+  text-transform: uppercase;
+}
+
+.kpi:last-child {
+  border-right: 0;
+}
+
+.kpi span,
+.kpi small,
+.race-head,
+.race-card header span,
+.goal-marker,
+.fire small,
+.reference a {
+  color: var(--text);
+  font-size: 13px;
+  text-transform: uppercase;
+}
+
+.kpi div {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 22px;
+  width: 100%;
+  line-height: 1;
+}
+
+.kpi b,
+.kpi strong {
+  font-size: 42px;
+}
+
+.up b,
+.up strong {
+  color: var(--blue);
+}
+
+.goal b,
+.goal strong,
+.top b,
+.top strong {
+  color: var(--yellow);
+}
+
+.active b,
+.active strong {
+  color: var(--cyan);
+}
+
+.time b,
+.time strong {
+  color: var(--orange);
+}
+
+.dashboard-grid {
+  display: grid;
+  grid-template-areas:
+    "live live shift shift"
+    "top improved improved fire";
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-rows: minmax(0, 1fr) 150px;
+  gap: 12px;
+  min-height: 0;
+}
+
+.live-card {
+  grid-area: live;
+}
+
+.shift-card {
+  grid-area: shift;
+}
+
+.top-three {
+  grid-area: top;
+}
+
+.improved {
+  grid-area: improved;
+}
+
+.fire {
+  grid-area: fire;
+}
+
+.race-card {
+  position: relative;
+  display: grid;
+  grid-template-rows: 38px 36px minmax(0, 1fr);
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.race-card header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 0 24px;
+}
+
+.race-card h2 {
+  font-size: 24px;
+}
+
+.live-card header {
+  background: #1e6fba;
+}
+
+.shift-card header {
+  background: var(--green-dark);
+}
+
+.race-head {
+  display: grid;
+  grid-template-columns: 72px 200px minmax(160px, 1fr) 70px;
+  align-items: center;
+  gap: 12px;
+  padding: 0 28px;
+  font-size: 12px;
+  line-height: 1.05;
+}
+
+.race-head span:nth-child(1) {
+  grid-column: 1;
+  justify-self: center;
+}
+
+.race-head span:nth-child(2) {
+  grid-column: 2;
+  justify-self: start;
+}
+
+.race-head span:nth-child(3) {
+  grid-column: 4;
+  max-width: 70px;
+}
+
+.race-head span:last-child {
+  justify-self: end;
+  text-align: right;
+}
+
+.race-list {
+  display: grid;
+  align-content: start;
+  gap: 2px;
+  overflow: hidden;
+  padding: 4px 28px 10px;
+}
+
+.race-row {
+  display: grid;
+  grid-template-columns: 72px 200px minmax(160px, 1fr) 70px;
+  align-items: center;
+  gap: 12px;
+  min-height: 18px;
+}
+
+.rank {
+  justify-self: center;
+  color: var(--yellow);
+  font-size: 18px;
+}
+
+.picker {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  gap: 12px;
+}
+
+.badge {
+  display: inline-grid;
+  place-items: center;
+  flex: 0 0 22px;
+  width: 22px;
+  height: 22px;
+  border-radius: 6px;
+  background: var(--blue);
+  color: white;
+  font-size: 11px;
+}
+
+.shift-card .badge {
+  background: var(--green-dark);
+}
+
+.name {
+  overflow: hidden;
+  font-size: 16px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.bar {
+  position: relative;
+  height: 10px;
+  background: var(--track);
+}
+
+.bar::after {
+  position: absolute;
+  top: -3px;
+  bottom: -3px;
+  left: 78%;
+  border-left: 2px dashed rgba(255, 255, 255, 0.85);
+  content: "";
+}
+
+.bar span {
+  display: block;
+  height: 100%;
+  border-radius: 0 5px 5px 0;
+  background: var(--blue);
+}
+
+.shift-card .bar span {
+  background: var(--green);
+}
+
+.race-row strong {
+  justify-self: end;
+  font-size: 18px;
+}
+
+.goal-marker {
+  position: absolute;
+  left: 50%;
+  bottom: 10px;
+  transform: translateX(-50%);
+  padding: 1px 8px;
+  border-radius: 4px;
+  background: rgba(5, 11, 15, 0.92);
+  color: var(--blue);
+  white-space: nowrap;
+}
+
+.shift-card .goal-marker {
+  color: var(--green);
+}
+
+.mini-card {
+  min-width: 0;
+  min-height: 0;
+  padding: 10px 20px;
+}
+
+.mini-card h2 {
+  font-size: 24px;
+}
+
+.top-three {
+  display: grid;
+  grid-template-rows: 34px 1fr;
+}
+
+.top-cards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.top-card {
+  display: grid;
+  justify-items: center;
+  align-content: center;
+  border: 2px solid var(--line);
+  background: var(--panel-soft);
+  text-align: center;
+}
+
+.top-card:first-child {
+  border-color: var(--yellow);
+  background: linear-gradient(180deg, rgba(255, 212, 0, 0.35), rgba(18, 20, 18, 0.9));
+}
+
+.top-card:nth-child(3) {
+  border-color: var(--orange);
+  background: linear-gradient(180deg, rgba(255, 120, 38, 0.28), rgba(18, 20, 18, 0.9));
+}
+
+.top-card span {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--yellow);
+  color: #050505;
+  font-size: 18px;
+}
+
+.top-card strong {
+  max-width: 100%;
+  overflow: hidden;
+  font-size: 16px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.top-card b {
+  font-size: 30px;
+  line-height: 1;
+}
+
+.top-card small {
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+.improved {
+  display: grid;
+  grid-template-rows: 34px 1fr;
+}
+
+.improved ol {
+  display: grid;
+  align-content: start;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.improved li {
+  display: grid;
+  grid-template-columns: 32px 1fr 78px;
+  align-items: center;
+  gap: 10px;
+  font-size: 20px;
+}
+
+.improved strong {
+  justify-self: end;
+  color: var(--green);
+}
+
+.fire {
+  display: grid;
+  justify-items: center;
+  align-content: center;
+  text-align: center;
+}
+
+.fire h2,
+.fire b {
+  color: var(--orange);
+}
+
+.fire strong {
+  font-size: 22px;
+}
+
+.fire b {
+  font-size: 40px;
+  line-height: 1;
+}
+
+@media (max-width: 1400px) {
+  .wallboard {
+    min-width: 1000px;
+    grid-template-rows: 80px 104px minmax(0, 1fr);
+    padding: 0 16px 12px;
+  }
+
+  .board-header {
+    grid-template-columns: 230px 1fr 230px;
+  }
+
+  .brand-logo {
+    width: 170px;
+  }
+
+  .title-art {
+    width: min(560px, 100%);
+    height: 42px;
+  }
+
+  .title-block p {
+    font-size: 16px;
+  }
+
+  .group-switcher {
+    gap: 6px;
+  }
+
+  .group-switcher button {
+    min-width: 78px;
+    height: 24px;
+    font-size: 12px;
+  }
+
+  .kpi b,
+  .kpi strong {
+    font-size: 34px;
+  }
+
+  .race-card h2 {
+    font-size: 22px;
+  }
+
+  .name {
+    font-size: 19px;
+  }
+}

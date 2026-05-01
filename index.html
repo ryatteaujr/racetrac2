@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Picker Performance Wallboard</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <main class="wallboard">
+      <header class="board-header">
+        <img class="brand-logo" src="house-hasson-logo.png" alt="House-Hasson Hardware Company">
+        <div class="title-block">
+          <img id="boardTitleArt" class="title-art" src="Thunderdome-mez.png" alt="Group performance board">
+          <p>Real-time. Compete. Win.</p>
+        </div>
+        <div class="clock-block">
+          <strong id="snapshotTime">3:51 PM</strong>
+          <span id="warehouseDay">APR 30, 2026</span>
+        </div>
+      </header>
+
+      <section class="kpi-strip" aria-label="Picker performance KPIs">
+        <article class="kpi up">
+          <span>Average Pick Rate</span>
+          <div><b>UP</b><strong id="averagePickRate">0</strong></div>
+          <small>Lines / Hour</small>
+        </article>
+        <article class="kpi goal">
+          <span>Today's Goal</span>
+          <div><b>GO</b><strong id="goalPickRate">175</strong></div>
+          <small>Lines / Hour</small>
+        </article>
+        <article class="kpi top">
+          <span>Top Pick Rate Today</span>
+          <div><b>#1</b><strong id="topPickRate">0</strong></div>
+          <small id="topPickerCaption">Lines / Hour</small>
+        </article>
+        <article class="kpi active">
+          <span>Active Pickers</span>
+          <div><b>ON</b><strong id="activePickerCount">0</strong></div>
+          <small>On the Clock</small>
+        </article>
+        <article class="kpi time">
+          <span>Shift Time</span>
+          <div><b>T</b><strong id="remainingShiftTime">00:00</strong></div>
+          <small>Time Remaining</small>
+        </article>
+      </section>
+
+      <section class="dashboard-grid">
+        <article class="race-card live-card">
+          <header>
+            <h2>LIVE RACE - CURRENT HOUR</h2>
+            <span>LINES / HOUR</span>
+          </header>
+          <div class="race-head">
+            <span>Rank</span>
+            <span>Picker</span>
+            <span>Lines / Hour</span>
+          </div>
+          <div id="liveRace" class="race-list"></div>
+          <strong class="goal-marker">Goal 175 LPH</strong>
+        </article>
+
+        <article class="race-card shift-card">
+          <header>
+            <h2>SHIFT RACE - TOTAL TODAY</h2>
+            <span>LINES / HOUR AVG</span>
+          </header>
+          <div class="race-head">
+            <span>Rank</span>
+            <span>Picker</span>
+            <span>Lines / Hour Avg</span>
+          </div>
+          <div id="shiftRace" class="race-list"></div>
+          <strong class="goal-marker">Goal 175 LPH</strong>
+        </article>
+
+        <article class="mini-card top-three">
+          <h2>TOP 3 PICKERS TODAY</h2>
+          <div id="topCards" class="top-cards"></div>
+        </article>
+
+        <article class="mini-card improved">
+          <h2>MOST IMPROVED</h2>
+          <ol id="improvedList"></ol>
+        </article>
+
+        <article class="mini-card fire">
+          <h2>ON FIRE</h2>
+          <strong id="onFireName">--</strong>
+          <b id="onFireDetail">NO DATA</b>
+          <small>Last 30 min</small>
+        </article>
+      </section>
+
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
