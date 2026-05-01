@@ -16,6 +16,9 @@
     if (window.location?.hostname === "htmlpreview.github.io") {
       return GITHUB_DEMO_ENDPOINT;
     }
+    if (window.location?.hostname.endsWith(".github.io")) {
+      return "pickerticker.cfm";
+    }
     return "/pickerticker.cfm";
   }
 
